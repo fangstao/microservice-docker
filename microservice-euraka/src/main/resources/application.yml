@@ -1,0 +1,33 @@
+---
+spring:
+  profiles: peer1
+eureka:
+  instance:
+    hostname: peer1
+  client:
+    serviceUrl:
+      defaultZone: http://peer2/
+server:
+   port: 80
+---
+spring:
+  profiles: peer2
+eureka:
+  instance:
+    hostname: peer2
+  client:
+    serviceUrl:
+      defaultZone: http://peer3/
+server:
+   port: 80
+---
+spring:
+  profiles: peer3
+eureka:
+  instance:
+    hostname: peer3
+  client:
+    serviceUrl:
+      defaultZone: http://peer1/
+server:
+   port: 80

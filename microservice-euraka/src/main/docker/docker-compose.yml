@@ -1,0 +1,20 @@
+version: '2'
+services:
+  peer1:
+    image: fangstao/microservice-eureka
+    command: ['--spring.profiles.active=peer1']
+    networks:
+    - peer
+  peer2:
+    image: fangstao/microservice-eureka
+    command: ['--spring.profiles.active=peer2']
+    networks:
+        - peer
+  peer3:
+    image: fangstao/microservice-eureka
+    command: ['--spring.profiles.active=peer3']
+    networks:
+        - peer
+networks:
+  peer:
+    driver: overlay
