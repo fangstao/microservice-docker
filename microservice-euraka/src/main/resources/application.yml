@@ -1,33 +1,44 @@
----
 spring:
-  profiles: peer1
+  profiles: default
+server:
+  port: 8761
 eureka:
   instance:
-    hostname: peer1
+    hostname: localhost
   client:
+    registerWithEureka: false
+    fetchRegistry: false
     serviceUrl:
-      defaultZone: http://peer2/
-server:
-   port: 80
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 ---
 spring:
-  profiles: peer2
+  profiles: eureka-1
+  application:
+    name: service-discovery
 eureka:
-  instance:
-    hostname: peer2
   client:
     serviceUrl:
-      defaultZone: http://peer3/
+      defaultZone: http://service-discovery-2:8761/eureka
 server:
-   port: 80
+   port: 8761
 ---
 spring:
-  profiles: peer3
-eureka:
-  instance:
-    hostname: peer3
+  profiles: eureka-2
+  application:
+      name: service-discovery
   client:
     serviceUrl:
-      defaultZone: http://peer1/
+      defaultZone: http://service-discovery-1:8761/eureka
 server:
-   port: 80
+   port: 8761
+---
+spring:
+  profiles: eureka-3
+  application:
+      name: service-discovery
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://service-discovery-1:8761/eureka
+server:
+   port: 8761

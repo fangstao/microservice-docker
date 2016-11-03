@@ -2,7 +2,7 @@
 eureureka:
      client:
        serviceUrl:
-         defaultZone: http://localhost:8761/eureka/
+         defaultZone: http://peer1/eureka/
 spring:
   application:
     name: microservice-web

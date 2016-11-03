@@ -17,4 +17,4 @@ services:
         - peer
 networks:
   peer:
-    driver: overlay
+    external: true

@@ -11,5 +11,25 @@
 
     <artifactId>microservice-user</artifactId>
 
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.9</version>
+                <configuration>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <imageName>fangstao/microservice-user</imageName>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                    <useConfigFile>true</useConfigFile>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
